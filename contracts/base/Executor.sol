@@ -13,10 +13,7 @@ contract Executor {
         uint256 txGas
     ) internal returns (bool success) {
         if (operation == Enum.Operation.DelegateCall) {
-            // solhint-disable-next-line no-inline-assembly
-            assembly {
-                success := delegatecall(txGas, to, add(data, 0x20), mload(data), 0, 0)
-            }
+            revert("DelegateCall not allowed on this safe!");
         } else {
             // solhint-disable-next-line no-inline-assembly
             assembly {
